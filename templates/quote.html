@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quote
+{% endblock %}
+
+{% block main %}
+    <form action="/quote" method="post">
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="symbol" name="symbol" placeholder="Symbol" type="text">
+        </div>
+        <button class="btn btn-primary" type="submit">Quote</button>
+    </form>
+    {% if quote %}
+    <div class="container-fluid" id="centtab">
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th class="text-start">Name</th>
+                    <th class="text-start">Symbol</th>
+                    <th class="text-end">Price</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="text-start">{{ quote["name"] }}</td>
+                    <td class="text-start">{{ quote["symbol"] }}</td>
+                    <td class="text-end">{{ quote["price"] | usd}}</td>
+                    
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    {% endif %}
+{% endblock %}
